@@ -16,6 +16,8 @@ from sklearn.ensemble import RandomForestClassifier
 from matplotlib.ticker import PercentFormatter
 import numpy as np
 
+#Este Script sirve para aplicar el modelo random forest a los datasets generados en el script 02_CargarDatos
+
 #Se carga el dataset de entrenamiento
 directorio_entrada="C:/Users/User/Desktop/TesisPrincipal/Marcos/Pruebas/"
 archivo_entrada="Entrenamiento.dat"
@@ -46,7 +48,6 @@ tabla_prediccion.loc[tabla_prediccion['Ndia']=='Viernes' ,'Ndia']=5
 tabla_prediccion.loc[tabla_prediccion['Ndia']=='Sábado' ,'Ndia']=6
 tabla_prediccion.loc[tabla_prediccion['Ndia']=='Domingo' ,'Ndia']=7
 
-#predecir=tabla_prediccion[["latitude","longitude","VelocidadCalculada","DistMetros","accuracy","Hora"]]
 predecir=tabla_prediccion[["latitude","longitude","accuracy","Hora","VelocidadCalculada","DistMetros","Ndia"]]
 
 archivo_entrada3="Tilting.dat"
@@ -95,7 +96,6 @@ tabla_prediccion.loc[tabla_prediccion['Actividad']=="3",'Actividad']="QUIETO"
 
 plt.title("Registro Prediccion Nulos")
 plt.ylabel("Numero dias")
-#plt.hist(Still1["Ndia"], bins = 20)
 plt.hist(tabla_prediccion["Actividad"], weights=np.ones(len(tabla_prediccion)) / len(tabla_prediccion), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -113,7 +113,6 @@ tabla_tilting.loc[tabla_tilting['Actividad']=="3",'Actividad']="QUIETO"
 
 plt.title("Registro Prediccion Tilting")
 plt.ylabel("Numero dias")
-#plt.hist(Still1["Ndia"], bins = 20)
 plt.hist(tabla_tilting["Actividad"], weights=np.ones(len(tabla_tilting)) / len(tabla_tilting), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -127,7 +126,6 @@ tabla_entrenamiento["Actividad"]=tabla_entrenamiento["activity1"]
 result=tabla_entrenamiento.append([tabla_prediccion,tabla_tilting])
 
 print("Accuracy:",metrics.accuracy_score(y_test, prediccion))
-
 
 #Medidor de Precision
 print ("Train Accuracy :: ", accuracy_score(y_train, clf.predict(X_train)))

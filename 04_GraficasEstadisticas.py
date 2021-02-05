@@ -12,16 +12,13 @@ from matplotlib.ticker import PercentFormatter
 import numpy as np
 from datetime import datetime
 
+#Este script sirve para generar los gráficos con los resultados obtenidos del Script Random Forest
 
 directorio_salida="C:/Users/User/Desktop/TesisPrincipal/Marcos/Pruebas/"
 archivo_entrada="Estadisticas.dat"
 
 
 tabla_cargada = pd.read_table(directorio_salida+archivo_entrada, sep=",")
-
-
-
-
 
 
 ################################################################################################
@@ -73,23 +70,10 @@ plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
 
 
-#Onfoot1.groupby('Ndia').count()["activity1"].plot(kind='bar')
-
-'''
-Tilting1=tabla_cargada.loc[tabla_cargada["activity1"]=="TILTING"]
-
-plt.title("Movimiento a tilting registrado")
-plt.ylabel("Numero dias")
-#plt.hist(Tilting1["Ndia"], bins = 20)
-plt.hist(Tilting1["Ndia"], weights=np.ones(len(Tilting1)) / len(Tilting1), bins = 20)
-plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
-plt.show()
-'''
 IV1=tabla_cargada.loc[tabla_cargada["Actividad"]==0]
 
 plt.title("Movimiento en vehiculo registrado (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(IV1["Ndia"], bins = 20)
 plt.hist(IV1["Ndia"], weights=np.ones(len(IV1)) / len(IV1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -98,7 +82,6 @@ Still1=tabla_cargada.loc[tabla_cargada["Actividad"]==3]
 
 plt.title("Registro Quieto registrado (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Still1["Ndia"], bins = 20)
 plt.hist(Still1["Ndia"], weights=np.ones(len(Still1)) / len(Still1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -120,7 +103,6 @@ Onfoot1_S1 = Onfoot1_S1.drop(Onfoot1_S1[(Onfoot1_S1['Fecha2'] >= str(fecha_final
 
 plt.title("Movimiento a pie registrado Semestre Marzo 2019 - Agosto 2019 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Onfoot1_S1["Ndia"], weights=np.ones(len(Onfoot1_S1)) / len(Onfoot1_S1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -131,7 +113,6 @@ Onfoot1_S2 = Onfoot1_S2.drop(Onfoot1_S2[(Onfoot1_S2['Fecha2'] >= str(fecha_final
 
 plt.title("Movimiento a pie registrado Semestre Septiembre 2019 - Marzo 2020 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Onfoot1_S2["Ndia"], weights=np.ones(len(Onfoot1_S2)) / len(Onfoot1_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -143,7 +124,6 @@ IV1_S1 = IV1_S1.drop(IV1_S1[(IV1_S1['Fecha2'] >= str(fecha_final_S1))].index)
 
 plt.title("Movimiento en vehiculo registrado Semestre Marzo 2019 - Agosto 2019 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(IV1_S1["Ndia"], weights=np.ones(len(IV1_S1)) / len(IV1_S1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -154,7 +134,6 @@ IV1_S2 = IV1_S2.drop(IV1_S2[(IV1_S2['Fecha2'] >= str(fecha_final_S2))].index)
 
 plt.title("Movimiento en vehiculo Semestre Septiembre 2019 - Marzo 2020 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(IV1_S2["Ndia"], weights=np.ones(len(IV1_S2)) / len(IV1_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -167,7 +146,6 @@ Still1_S1 = Still1_S1.drop(Still1_S1[(Still1_S1['Fecha2'] >= str(fecha_final_S1)
 
 plt.title("Sin movimiento registrado Semestre Marzo 2019 -Agosto 2019 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Still1_S1["Ndia"], weights=np.ones(len(Still1_S1)) / len(Still1_S1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -180,7 +158,6 @@ Still1_S2 = Still1_S2.drop(Still1_S2[(Still1_S2['Fecha2'] >= str(fecha_final_S2)
 
 plt.title("Sin Movimiento Semestre Septiembre 2019 - Marzo 2020 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Still1_S2["Ndia"], weights=np.ones(len(Still1_S2)) / len(Still1_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -193,7 +170,6 @@ tabla_cargada_S1 = tabla_cargada_S1.drop(tabla_cargada_S1[(tabla_cargada_S1['Fec
 
 plt.title("Actividad registrado Semestre Marzo 2019 - Agosto 2019 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(tabla_cargada_S1["Ndia"], weights=np.ones(len(tabla_cargada_S1)) / len(tabla_cargada_S1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -205,7 +181,6 @@ tabla_cargada_S2 = Onfoot1_S2.drop(Onfoot1_S2[(Onfoot1_S2['Fecha2'] >= str(fecha
 
 plt.title("Actividad registrado Semestre Septiembre 2019 - Marzo 2020 (Días)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(tabla_cargada_S2["Ndia"], weights=np.ones(len(tabla_cargada_S2)) / len(tabla_cargada_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -218,7 +193,6 @@ tabla_cargada=tabla_cargada.sort_values('Hora')
 
 plt.title("Actividades por hora ")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(tabla_cargada["Hora"], weights=np.ones(len(tabla_cargada)) / len(tabla_cargada), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -230,7 +204,6 @@ Onfoot1=Onfoot1.sort_values('Hora')
 
 plt.title("Actividades por hora (A pie)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Onfoot1["Hora"], weights=np.ones(len(Onfoot1)) / len(Onfoot1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -242,7 +215,6 @@ IV1=IV1.sort_values('Hora')
 
 plt.title("Actividades por hora (Vehiculo)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(IV1["Hora"], weights=np.ones(len(IV1)) / len(IV1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -254,7 +226,6 @@ Still1=Still1.sort_values('Hora')
 
 plt.title("Actividades por hora  (Quieto) ")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Still1["Hora"], weights=np.ones(len(Still1)) / len(Still1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -267,7 +238,6 @@ Onfoot1_S1=Onfoot1_S1.sort_values('Hora')
 
 plt.title("Movimiento a pie registrado Semestre Marzo 2019 - Agosto 2019 (Horas)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Onfoot1_S1["Hora"], weights=np.ones(len(Onfoot1_S1)) / len(Onfoot1_S1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -280,7 +250,6 @@ Onfoot1_S2=Onfoot1_S2.sort_values('Hora')
 
 plt.title("Movimiento a pie registrado Semestre Septiembre 2019 - Marzo 2020 (Horas)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Onfoot1_S2["Hora"], weights=np.ones(len(Onfoot1_S2)) / len(Onfoot1_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -293,7 +262,6 @@ IV1_S1=IV1_S1.sort_values('Hora')
 
 plt.title("Movimiento en vehiculo registrado Semestre Marzo 2019 - Agosto 2019 (Horas)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(IV1_S1["Hora"], weights=np.ones(len(IV1_S1)) / len(IV1_S1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -306,7 +274,6 @@ IV1_S2=IV1_S2.sort_values('Hora')
 
 plt.title("Movimiento en vehiculo registrado Semestre Septiembre 2019 - Marzo 2020 (Horas)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(IV1_S2["Hora"], weights=np.ones(len(IV1_S2)) / len(IV1_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -332,7 +299,6 @@ Still1_S2=Still1_S2.sort_values('Hora')
 
 plt.title("Sin Movimiento registrado Semestre Septiembre 2019 - Marzo 2020 (Horas)")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(Still1_S2["Hora"], weights=np.ones(len(Still1_S2)) / len(Still1_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -345,7 +311,6 @@ tabla_cargada_S1=tabla_cargada_S1.sort_values('Hora')
 
 plt.title("Actividades por hora Semestre Marzo 2019 - Agosto 2019 ")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(tabla_cargada_S1["Hora"], weights=np.ones(len(tabla_cargada_S1)) / len(tabla_cargada_S1), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
@@ -357,7 +322,6 @@ tabla_cargada_S2=tabla_cargada_S2.sort_values('Hora')
 
 plt.title("Actividades por hora Semestre Septiembre 2019 - Marzo 2020 ")
 plt.ylabel("Proporcion de los registros capturados (%)")
-#plt.hist(Onfoot1["Ndia"], bins = 20)
 plt.hist(tabla_cargada_S2["Hora"], weights=np.ones(len(tabla_cargada_S2)) / len(tabla_cargada_S2), bins = 20)
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()

@@ -7,9 +7,8 @@ Created on Sat Aug 15 23:37:26 2020
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter
-import numpy as np
-from datetime import datetime
+
+#Este Script Sirve para generar los graficos de las actividades en las principales entradas del campus principal de la Universidad Central del Ecuador
 
 directorio_salida="C:/Users/User/Desktop/TesisPrincipal/Marcos/Pruebas/"
 archivo_entrada="Estadisticas.dat"
@@ -26,8 +25,6 @@ tabla_carvajal= tabla_cargada.drop(tabla_cargada[((tabla_cargada['latitude']>=-0
 plt.title("Actividades Sector Calle Carvajal")
 plt.ylabel("Proporcion de los registros capturados")
 plt.hist(tabla_carvajal["Actividad"], bins = 20)
-#plt.hist(tabla_cargada["Actividad"], weights=np.ones(len(tabla_cargada)) / len(tabla_cargada), bins = 20)
-#plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
 
 
@@ -36,8 +33,6 @@ tabla_leiton= tabla_cargada.drop(tabla_cargada[((tabla_cargada['latitude']>=-0.1
 plt.title("Actividades Sector Calle Leiton")
 plt.ylabel("Proporcion de los registros capturados")
 plt.hist(tabla_leiton["Actividad"], bins = 20)
-#plt.hist(tabla_cargada["Actividad"], weights=np.ones(len(tabla_cargada)) / len(tabla_cargada), bins = 20)
-#plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
 
 
@@ -46,8 +41,6 @@ tabla_Puente= tabla_cargada.drop(tabla_cargada[((tabla_cargada['latitude']>=-0.1
 plt.title("Actividades Sector Puente Peatonal")
 plt.ylabel("Proporcion de los registros capturados")
 plt.hist(tabla_Puente["Actividad"], bins = 20)
-#plt.hist(tabla_cargada["Actividad"], weights=np.ones(len(tabla_cargada)) / len(tabla_cargada), bins = 20)
-#plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
 
 tabla_Pileta= tabla_cargada.drop(tabla_cargada[((tabla_cargada['latitude']>=-0.20148) | (tabla_cargada['latitude'] <= -0.20186))|(( tabla_cargada['longitude']>=-78.50146 )|(tabla_cargada['longitude'] <= -78.50185))].index)
@@ -55,8 +48,6 @@ tabla_Pileta= tabla_cargada.drop(tabla_cargada[((tabla_cargada['latitude']>=-0.2
 plt.title("Actividades Sector Pileta UCE")
 plt.ylabel("Proporcion de los registros capturados")
 plt.hist(tabla_Pileta["Actividad"], bins = 20)
-#plt.hist(tabla_cargada["Actividad"], weights=np.ones(len(tabla_cargada)) / len(tabla_cargada), bins = 20)
-#plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
 
 tabla_Bolivia= tabla_cargada.drop(tabla_cargada[((tabla_cargada['latitude']>=-0.20193) | (tabla_cargada['latitude'] <= -0.20233))|(( tabla_cargada['longitude']>=-78.50672 )|(tabla_cargada['longitude'] <= -78.50706))].index)
@@ -64,10 +55,4 @@ tabla_Bolivia= tabla_cargada.drop(tabla_cargada[((tabla_cargada['latitude']>=-0.
 plt.title("Actividades Sector Calle Bolivia")
 plt.ylabel("Proporcion de los registros capturados")
 plt.hist(tabla_Bolivia["Actividad"], bins = 20)
-#plt.hist(tabla_cargada["Actividad"], weights=np.ones(len(tabla_cargada)) / len(tabla_cargada), bins = 20)
-#plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()  
-
-#Control=tabla_cargada.loc[tabla_cargada["id"]=="tld0"]
-
-#Control=tabla_cargada.iloc[0:2000]
