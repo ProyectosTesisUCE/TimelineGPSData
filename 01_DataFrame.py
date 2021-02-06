@@ -42,20 +42,16 @@ print("Tamaño del archivo: "+str(len(original['dataQuitoTotal'])))
 if('tabla_final_uce' not in globals() and 'tabla_final_todo' not in globals() ):
          tabla_final_uce=pd.DataFrame()
          tabla_final_uce=pd.DataFrame(columns=[])
-    #Comprueba numero de columnas del dataframe original y lo concatena a un nuevo dataframe    
-if((original['dataQuitoTotal'].shape[1])<13):    
-       i=0
-else:
-       original['dataQuitoTotal']['file']=archivo
-       #Aplica zona horaria del Ecuador a la fecha original 
-       original['dataQuitoTotal']['dateTimeLine'] = original['dataQuitoTotal']['dateTimeLine'] - dt.timedelta(hours=5)
-       #Separa fecha de hora
-       separador = original['dataQuitoTotal']['dateTimeLine'].astype(str).str.split(".", n = 1, expand = True) 
-       original['dataQuitoTotal']['Fecha']=separador[0] 
-       separador = original['dataQuitoTotal']['dateTimeLine'].astype(str).str.split(" ", n = 1, expand = True)  
-       original['dataQuitoTotal']['Fecha2']=separador[0] 
-       #Limitar coordenadas Campus Universidad Central del Ecuador
-       original['dataQuitoTotal']= original['dataQuitoTotal'].drop( original['dataQuitoTotal'][((original['dataQuitoTotal']['latitude']>=-0.19425) | (original['dataQuitoTotal']['latitude'] <= -0.20341))|(( original['dataQuitoTotal']['longitude']>=-78.49805 )|(original['dataQuitoTotal']['longitude'] <= -78.51377))].index)         
+       
+#Aplica zona horaria del Ecuador a la fecha original 
+original['dataQuitoTotal']['dateTimeLine'] = original['dataQuitoTotal']['dateTimeLine'] - dt.timedelta(hours=5)
+#Separa fecha de hora
+separador = original['dataQuitoTotal']['dateTimeLine'].astype(str).str.split(".", n = 1, expand = True) 
+original['dataQuitoTotal']['Fecha']=separador[0] 
+separador = original['dataQuitoTotal']['dateTimeLine'].astype(str).str.split(" ", n = 1, expand = True)  
+original['dataQuitoTotal']['Fecha2']=separador[0] 
+#Limitar coordenadas Campus Universidad Central del Ecuador
+original['dataQuitoTotal']= original['dataQuitoTotal'].drop( original['dataQuitoTotal'][((original['dataQuitoTotal']['latitude']>=-0.19425) | (original['dataQuitoTotal']['latitude'] <= -0.20341))|(( original['dataQuitoTotal']['longitude']>=-78.49805 )|(original['dataQuitoTotal']['longitude'] <= -78.51377))].index)         
 original['dataQuitoTotal'] = original['dataQuitoTotal'].reset_index()
 print("acabo primer proceso")
 #######################################################################################

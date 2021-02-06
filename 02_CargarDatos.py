@@ -24,11 +24,7 @@ archivo_titling="Tilting.dat"
 tabla_cargada = pd.read_table(directorio_salida+archivo_entrada, sep=",")
     
 tabla_cargada= tabla_cargada.drop( tabla_cargada[((tabla_cargada['VelocidadCalculada']==np.inf) )].index)
-
-tabla_cargada= tabla_cargada.drop( tabla_cargada[((tabla_cargada['VelocidadCalculada']==np.inf) )].index)
        
-
-
 ##########################################################################################################
 #Grafico 1
 datos=tabla_cargada
