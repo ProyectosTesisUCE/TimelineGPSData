@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 19 13:21:23 2020
-
-@author: User
-"""
-
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,7 +5,7 @@ from matplotlib.ticker import PercentFormatter
 
 #Este script sirve para crear los datasets de Entrenamiento y prediccion que serviran para el modelo de Random Forest
 
-directorio_salida="C:/Users/User/Desktop/TesisPrincipal/Marcos/Pruebas/"
+directorio_salida="D:/TesisPrincipal/Marcos/Pruebas/"
 archivo_entrada="DataSmartTotal.dat"
 
 archivo_entrenamiento="Entrenamiento.dat"
@@ -75,11 +67,22 @@ tabla_cargada['Rango'] = np.select(conditions, choices, default=-1)
 tabla_cargada.loc[tabla_cargada['activity1']=="UNKNOWN",'confidence1']=tabla_cargada['confidence2']
 tabla_cargada.loc[tabla_cargada['activity1']=="UNKNOWN",'activity1']=tabla_cargada['activity2']
 
+datos2=tabla_cargada
 
+datos2.loc[datos2['activity1'].isnull()==True,'activity1']="NULL"
+
+plt.title("Distribucion variables activity1 sin valores UNKNOWN")
+plt.ylabel("Numero dias")
+plt.hist(datos2["activity1"], weights=np.ones(len(datos2)) / len(datos2), bins = 20)
+plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
+plt.xticks(rotation='vertical')
+plt.show()
+
+#tabla_cargada.loc[tabla_cargada['activity1'].isnull()==True,'activity1','activity1']=5
 tabla_cargada.loc[tabla_cargada['activity1']=="IN_VEHICLE",'activity1']=0
 tabla_cargada.loc[tabla_cargada['activity1']=="ON_BICYCLE",'activity1']=0
 tabla_cargada.loc[tabla_cargada['activity1']=="ON_FOOT",'activity1']=2
-tabla_cargada.loc[tabla_cargada['activity1']=="STILL",'activity1']=3
+tabla_cargada.loc[tabla_cargada['activity1']=="STILL",'activity1']=2
 tabla_cargada.loc[tabla_cargada['activity1']=="TILTING",'activity1']=5
 tabla_cargada.loc[tabla_cargada['activity1']=="WALKING",'activity1']=7
 tabla_cargada.loc[tabla_cargada['activity1']=="RUNNING",'activity1']=8
@@ -95,9 +98,9 @@ tabla_cargada.loc[tabla_cargada['activity1']=="IN_RAIL_VEHICLE",'activity1']=0
 datos2=tabla_cargada
 
 datos2.loc[datos2['activity1'].isnull()==True,'activity1']="NULL"
-datos2.loc[datos2['activity1']==0,'activity1']="IN_VEHICLE"
-datos2.loc[datos2['activity1']==2,'activity1']="ON_FOOT"
-datos2.loc[datos2['activity1']==3,'activity1']="STILL"
+datos2.loc[datos2['activity1']==0,'activity1']="CON_VEHICULO"
+datos2.loc[datos2['activity1']==2,'activity1']="SIN_VEHICULO"
+datos2.loc[datos2['activity1']==3,'activity1']="SIN_VEHICULO"
 datos2.loc[datos2['activity1']==5,'activity1']="TILTING"
 
 plt.title("Distribucion variables (Unificado)")
@@ -110,12 +113,36 @@ plt.show()
 #############################################################################################################
 tabla_cargada.drop(tabla_cargada.columns[tabla_cargada.columns.str.contains('unnamed',case = False)],axis = 1, inplace = True)
 
-tabla_cargada.loc[tabla_cargada['activity1']=="NULL",'activity1']=np.NaN
-tabla_cargada.loc[tabla_cargada['activity1']=="IN_VEHICLE",'activity1']=0
-tabla_cargada.loc[tabla_cargada['activity1']=="ON_FOOT",'activity1']=2
-tabla_cargada.loc[tabla_cargada['activity1']=="STILL",'activity1']=3
+tabla_cargada.loc[tabla_cargada['activity1']=="NULL",'activity1']=5
+tabla_cargada.loc[tabla_cargada['activity1']=="CON_VEHICULO",'activity1']=0
+tabla_cargada.loc[tabla_cargada['activity1']=="SIN_VEHICULO",'activity1']=2
+#tabla_cargada.loc[tabla_cargada['activity1']=="SIN_VEHICULO",'activity1']=2
 tabla_cargada.loc[tabla_cargada['activity1']=="TILTING",'activity1']=5
 
+
+###########################################################################################################
+#Grafico 3
+
+datos3=tabla_cargada
+
+datos3.loc[datos3['activity1']==0,'activity1']="CON_VEHICULO"
+datos3.loc[datos3['activity1']==2,'activity1']="SIN_VEHICULO"
+datos3.loc[datos3['activity1']==5,'activity1']="INDETERMINADO"
+
+plt.title("Distribucion variables (Unificado)")
+plt.ylabel("Numero dias")
+plt.hist(datos3["activity1"], weights=np.ones(len(datos3)) / len(datos3), bins = 20)
+plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
+plt.xticks(rotation='vertical')
+plt.show()
+
+######################################################################################################
+
+tabla_cargada.drop(tabla_cargada.columns[tabla_cargada.columns.str.contains('unnamed',case = False)],axis = 1, inplace = True)
+
+tabla_cargada.loc[tabla_cargada['activity1']=="CON_VEHICULO",'activity1']=0
+tabla_cargada.loc[tabla_cargada['activity1']=="SIN_VEHICULO",'activity1']=2
+tabla_cargada.loc[tabla_cargada['activity1']=="INDETERMINADO",'activity1']=5
 
 Entrenamiento=tabla_cargada.loc[(tabla_cargada['activity1'].isnull()==False)]
 Tilting=tabla_cargada.loc[tabla_cargada['activity1']==5]
@@ -134,3 +161,5 @@ Prediccion.drop(columns =["index"], inplace = True)
 Tilting.to_csv(directorio_salida+archivo_titling)
 Entrenamiento.to_csv(directorio_salida+archivo_entrenamiento)
 Prediccion.to_csv(directorio_salida+archivo_prediccion)
+
+

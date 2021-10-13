@@ -24,8 +24,8 @@ directorio_salida="C:/Users/User/Desktop/TesisPrincipal/Marcos/Pruebas/"
 #directorio_salida="/home/milton.moncayo/SmartGPS/data/"
 archivo_salida="DataSmartTotal.dat"
 
-fecha_final = datetime.strptime('2019-11-30', '%Y-%m-%d')
-fecha_inicio = datetime.strptime('2019-09-01', '%Y-%m-%d')
+#fecha_final = datetime.strptime('2019-11-30', '%Y-%m-%d')
+#fecha_inicio = datetime.strptime('2019-09-01', '%Y-%m-%d')
 
 
 archivo="tld0"+".RData"
